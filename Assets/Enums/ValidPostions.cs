@@ -6,18 +6,33 @@ using UnityEngine.UI;
 namespace position
 
 {
-    public class Posiciones : MonoBehaviour
+    public class Position : MonoBehaviour
     {
         public enum CombatZone
         {
-            Buff,
-            Debuf,
-            Target,
             MeleeZone,
             RangeZone,
-            AssediumZone
+            AssediumZone,
+            Target,
+            Buff,
+            Debuf,
+            Clear,
+            Leader
         }
 
+        public enum MonsterEffect
+        {
+            None,
+            BoostTypeA,
+            BoostTypeB,
+            Copy,
+            RandomDestroy
+        }
 
+        public enum LiderEffect
+        {
+            Inmune,
+            UnfairDraw
+        }
     }
 }
