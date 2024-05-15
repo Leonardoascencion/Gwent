@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+    //Script asociate to the front text that say the current  turn belong and the round and game winner
 public class TextZone : MonoBehaviour
 {
     public GameObject Texto;
-
     void Start()
     {
         Texto.GetComponent<Text>().text = "Todo bien";

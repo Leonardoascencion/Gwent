@@ -5,6 +5,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Funciona el Sistema de robar
 public class Draw : MonoBehaviour
 {
     public GameObject Button;
@@ -33,12 +34,6 @@ public class Draw : MonoBehaviour
         InitialDraw();
     }
 
-    public void InitialDraw()
-    {
-        for (int i = 0; i < 10; i++) //draw 10 cards
-            DrawFunction();
-
-    }
 
     public void Update()
     {
@@ -51,14 +46,36 @@ public class Draw : MonoBehaviour
             }
 
         }
+        for (int i = 0; i < Hand.transform.childCount; i++)
+            if (Hand.transform.GetChild(i).GetComponent<Cards>())
+                Hand.transform.GetChild(i).GetComponent<Cards>().Attack = Hand.transform.GetChild(i).GetComponent<Cards>().OriginalAttack;
+
     }
 
     public void DrawFunction()
     {
-        int Maxim = Hand.transform.childCount;
-        int Total = RealDeck.transform.childCount;
-        int randomnumber = UnityEngine.Random.Range(0, Total - 1);
-        if (Maxim < 10 && RealDeck.transform.childCount > 0)//check if there is spots for cards in hand and cards in deck
-            RealDeck.transform.GetChild(randomnumber).SetParent(Hand.transform, false);
+        if (GameManager.Instance.TurnPlayer1 == BelongsPlayer1 && GameManager.Instance.TurnPlayer2 != BelongsPlayer1 && GameManager.Instance.StartTurn)
+        {
+            int Maxim = Hand.transform.childCount;
+            int Total = RealDeck.transform.childCount;
+            int randomnumber = UnityEngine.Random.Range(0, Total - 1);
+            if (Maxim < 10 && RealDeck.transform.childCount > 0)//check if there is spots for cards in hand and cards in deck
+                RealDeck.transform.GetChild(randomnumber).SetParent(Hand.transform, false);
+            GameManager.Instance.StartTurn = false;
+            Debug.Log("Robo");
+        }
+    }
+
+    public void InitialDraw()
+    {
+        for (int i = 0; i < 10; i++) //draw 10 cards
+        {
+            int Maxim = Hand.transform.childCount;
+            int Total = RealDeck.transform.childCount;
+            int randomnumber = UnityEngine.Random.Range(0, Total - 1);
+            if (Maxim < 10 && RealDeck.transform.childCount > 0)//check if there is spots for cards in hand and cards in deck
+                RealDeck.transform.GetChild(randomnumber).SetParent(Hand.transform, false);
+        }
+
     }
 }

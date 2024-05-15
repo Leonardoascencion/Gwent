@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+ // script asociate to count the total damage of the zones of the player in the table
 public class TotalDamage : MonoBehaviour
 {
     public GameObject Total;

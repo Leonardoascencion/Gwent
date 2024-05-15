@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+// script that count the total damage of the zone asociate 
 public class MeleeDamage : MonoBehaviour
 {
     public GameObject texto;
     public GameObject Fila;
-    // Start is called before the first frame update
+
     void Start()
     {
         texto.GetComponent<Text>().text = "0";

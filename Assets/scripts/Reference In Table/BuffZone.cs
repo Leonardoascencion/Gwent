@@ -4,6 +4,7 @@ using UnityEngine;
 using position;
 using Unity.VisualScripting;
 
+//Script asociate to the Zones that invoque ugrades to the zone asociate
 public class BuffZone : MonoBehaviour
 {
     public GameObject AsociateZone;
@@ -12,7 +13,7 @@ public class BuffZone : MonoBehaviour
     public void Start()
     {
         if (gameObject.transform.parent.tag == "CombatPlayer2")
-        BelongsPlayer1 = false;
+            BelongsPlayer1 = false;
         else BelongsPlayer1 = true;
     }
 
@@ -28,8 +29,13 @@ public class BuffZone : MonoBehaviour
                         Buff();
                     }
         Scope.FirstExampleCard = null;
+
+        /* nose si quiero q pase de turno o no        
+                    GameManager.Instance.ChangeTurn(); */
+
     }
 
+    //metod that increase the damage of all cards in the current zone
     public void Buff()
     {
         int Total = AsociateZone.transform.childCount;
@@ -40,10 +46,10 @@ public class BuffZone : MonoBehaviour
             if (AsociateZone.transform.GetChild(i).GetComponent<Cards>().Afected)
                 AsociateZone.transform.GetChild(i).GetComponent<Cards>().Attack += Ugrade;
         }
-        if(BelongsPlayer1)
-        Scope.FirstExampleCard.transform.SetParent(GameObject.Find("GravePlayer1").transform, false);
+        if (BelongsPlayer1)
+            Scope.FirstExampleCard.transform.SetParent(GameObject.Find("GravePlayer1").transform, false);
         else
-        Scope.FirstExampleCard.transform.SetParent(GameObject.Find("GravePlayer2").transform, false);
+            Scope.FirstExampleCard.transform.SetParent(GameObject.Find("GravePlayer2").transform, false);
     }
 
 }

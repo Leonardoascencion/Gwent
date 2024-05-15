@@ -10,12 +10,13 @@ public class GameManager : MonoBehaviour
     public int AttakPlayer2 { get; set; } = 0;
     public int ScorePlayer1 { get; set; } = 0;
     public int ScorePlayer2 { get; set; } = 0;
+    public bool StartTurn { get; set; } = true;
     public bool TurnPlayer1 { get; set; } = true;
     public bool TurnPlayer2 { get; set; } = false;
     public bool EndRoundPlayer1 { get; set; } = false;
     public bool EndRoundPlayer2 { get; set; } = false;
     public bool ENDGAME { get; private set; } = false;
-
+    public int contador;
     void Awake()
     {
         Instance = this;
@@ -70,6 +71,16 @@ public class GameManager : MonoBehaviour
                     ScorePlayer1 += 1;
                     ScorePlayer2 += 1;
                     TurnPlayer2 = true;
+                    if (GameObject.Find("Leader2").GetComponent<Leader>().LiderEfects == position.Position.LiderEffect.UnfairDraw && GameObject.Find("Leader1").GetComponent<Leader>().LiderEfects != position.Position.LiderEffect.UnfairDraw)
+                    {
+                        ScorePlayer1 -= 1;
+                        GameObject.Find("Text error").GetComponent<Text>().text = " Empate(guiño al 2)";
+                    }
+                    else
+                    {
+                        GameObject.Find("Text error").GetComponent<Text>().text = " Empate(guiño al 1)";
+                        ScorePlayer2 -= 1;
+                    }
                 }
                 EndRoundPlayer1 = false;
                 EndRoundPlayer2 = false;
@@ -81,24 +92,29 @@ public class GameManager : MonoBehaviour
                 DropCementery(GameObject.Find("RangeField2"));
                 DropCementery(GameObject.Find("AssediumField2"));
             }
-
-
+            GameObject.Find("RoundCount1").GetComponent<Text>().text = ScorePlayer1.ToString();
+            GameObject.Find("RoundCount2").GetComponent<Text>().text = ScorePlayer2.ToString();
         }
 
-        if (ScorePlayer1 == 2)
+        if (ScorePlayer1 == 2 && ScorePlayer2 < 2)
         {
             GameObject.Find("Text error").GetComponent<Text>().text = "Gano Player1";
             ENDGAME = true;
             Debug.Log("Gano1");
         }
 
-        if (ScorePlayer2 == 2)
+        if (ScorePlayer2 == 2 && ScorePlayer1 < 2)
         {
             GameObject.Find("Text error").GetComponent<Text>().text = "Gano Player2";
             ENDGAME = true;
             Debug.Log("Gano2");
         }
 
+        if (ScorePlayer1 == 2 && ScorePlayer2 == 2)
+        {
+            GameObject.Find("Text error").GetComponent<Text>().text = "Gano Player2";
+            ENDGAME = true;
+        }
     }
 
     //Function for send all cards to cementary of a zone
@@ -122,5 +138,12 @@ public class GameManager : MonoBehaviour
         }
 
     }
+    public void ChangeTurn()
+    {
+        Instance.TurnPlayer1 = !Instance.TurnPlayer1;
+        Instance.TurnPlayer2 = !Instance.TurnPlayer2;
+        StartTurn = true;
+    }
+
 
 }
