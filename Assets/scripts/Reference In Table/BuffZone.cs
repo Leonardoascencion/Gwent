@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using position;
+using EspecialHabilities;
 using Unity.VisualScripting;
 
 //Script asociate to the Zones that invoque ugrades to the zone asociate
@@ -21,10 +21,10 @@ public class BuffZone : MonoBehaviour
     {
         if (Scope.FirstExampleCard != null && Scope.FirstExampleCard.BelongsPlayer1 == BelongsPlayer1)
             for (int i = 0; i < Scope.FirstExampleCard.BelongsPositiions.Count; i++)
-                if (Scope.FirstExampleCard.BelongsPositiions[i] == Position.CombatZone.Buff && Scope.FirstExampleCard.ItIsInHand)
+                if (Scope.FirstExampleCard.BelongsPositiions[i] == Especial.CombatZone.Buff && Scope.FirstExampleCard.ItIsInHand)
                     if (transform.childCount == 0)
                     {
-                        Scope.FirstExampleCard.transform.SetParent(this.gameObject.transform, false);
+                        Scope.FirstExampleCard.transform.SetParent(gameObject.transform, false);
                         Scope.FirstExampleCard.ItIsInHand = false;
                         Buff();
                     }
@@ -38,14 +38,15 @@ public class BuffZone : MonoBehaviour
     //metod that increase the damage of all cards in the current zone
     public void Buff()
     {
-        int Total = AsociateZone.transform.childCount;
         int Ugrade = Scope.FirstExampleCard.Attack;
+        /*        int Total = AsociateZone.transform.childCount;
 
-        for (int i = 0; i < Total; i++)
-        {
-            if (AsociateZone.transform.GetChild(i).GetComponent<Cards>().Afected)
-                AsociateZone.transform.GetChild(i).GetComponent<Cards>().Attack += Ugrade;
-        }
+               for (int i = 0; i < Total; i++)
+               {
+                   if (AsociateZone.transform.GetChild(i).GetComponent<Cards>().Afected)
+                       AsociateZone.transform.GetChild(i).GetComponent<Cards>().Attack += Ugrade;
+               } */
+        AsociateZone.GetComponent<WarZone>().DamgeAffected += Ugrade;
         if (BelongsPlayer1)
             Scope.FirstExampleCard.transform.SetParent(GameObject.Find("GravePlayer1").transform, false);
         else

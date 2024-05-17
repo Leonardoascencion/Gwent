@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using position;
+using EspecialHabilities;
 
 public class ClimateZone : MonoBehaviour
 {

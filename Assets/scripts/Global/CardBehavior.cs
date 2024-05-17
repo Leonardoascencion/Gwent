@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using position;
+using EspecialHabilities;
 using System.IO;
 
 
@@ -12,14 +12,14 @@ public class Cards : MonoBehaviour
 {
     //    public Card Property { get; set; } no se usarlo ahora mismo
     public string Name;
-    public int Id = 0;
     public int Attack = 10;
-    public int OriginalAttack;
+    public int OriginalAttack = 0;
     public bool Afected = true;
     public bool ItIsInHand = true;
-    public List<Position.CombatZone> BelongsPositiions;
-    public Position.MonsterEffect monsterEfects;
+    public List<Especial.CombatZone> BelongsPositiions;
+    public Especial.MonsterEffect monsterEfects;
 
+    public Text ShowCard;
 
     //this make posible the turns of the game
     public bool BelongsPlayer1;
@@ -31,6 +31,16 @@ public class Cards : MonoBehaviour
     {
         OriginalAttack = Attack;
         DefaultSprite = GameObject.Find("ShowCard").GetComponent<Image>().sprite;
+    }
+    public void Update()
+    {
+        if (gameObject.transform.parent.GetComponent<WarZone>())
+        {
+            if (Afected)
+                Attack = OriginalAttack + gameObject.transform.parent.GetComponent<WarZone>().DamgeAffected;
+        }
+        if(Scope.FirstExampleCard == gameObject)
+        ShowCard.text = ShowCard.ToString();
     }
 
     void OnMouseDown()
@@ -74,11 +84,15 @@ public class Cards : MonoBehaviour
                      }
                  }
          } */
-         //4to
-        if ((GameManager.Instance.contador % 2) == 0)
-        {
-            Afected = false;
-        }
+
+        //4to in the midle of the game it will change constantly
+        if (monsterEfects == Especial.MonsterEffect.Inmune)
+            if (Afected)
+                if ((GameManager.Instance.Contador % 2) == 0)
+                {
+                    Afected = false;
+                }
+
     }
 
 
@@ -97,13 +111,87 @@ public class Cards : MonoBehaviour
 
     public void Efect()
     {
+
+
         //1er
-        Attack = gameObject.transform.parent.transform.childCount * Attack;
+        if (monsterEfects == Especial.MonsterEffect.BoostTypeA)
+            Attack = gameObject.transform.parent.transform.childCount * Attack;
 
         //2d
-        Attack = GameManager.Instance.contador * Attack;
+        if (monsterEfects == Especial.MonsterEffect.BoostTypeB)
+            Attack = GameManager.Instance.Contador * Attack;
 
         //3er
-        ItIsInHand = true;
+        if (monsterEfects == Especial.MonsterEffect.ReInvoke)
+            ItIsInHand = true;
+        //5to
+        if (monsterEfects == Especial.MonsterEffect.BossDestroy)
+            if (gameObject.transform.parent.GetComponent<WarZone>().AsociateZone.transform.childCount != 0)
+            {
+                int Compare = int.MinValue;
+                for (int i = 0; i <= gameObject.transform.parent.GetComponent<WarZone>().AsociateZone.transform.childCount - 1; i++)
+                {
+                    if (gameObject.transform.parent.GetComponent<WarZone>().AsociateZone.transform.GetChild(i).GetComponent<Cards>().Afected)
+                        if (Compare < gameObject.transform.parent.GetComponent<WarZone>().AsociateZone.transform.GetChild(i).GetComponent<Cards>().Attack)
+                            Compare = i;
+                }
+                if (Compare >= 0)
+                    if (gameObject.transform.parent.GetComponent<WarZone>().AsociateZone.transform.GetChild(Compare).GetComponent<Cards>().BelongsPlayer1)
+                        gameObject.transform.parent.GetComponent<WarZone>().AsociateZone.transform.GetChild(Compare).SetParent(GameObject.Find("GravePlayer1").transform, false);
+                    else
+                        gameObject.transform.parent.GetComponent<WarZone>().AsociateZone.transform.GetChild(Compare).SetParent(GameObject.Find("GravePlayer2").transform, false);
+            }
+        //6to
+        if (monsterEfects == Especial.MonsterEffect.Draw)
+        {
+            GameObject Deck;
+            GameObject Hand;
+            if (BelongsPlayer1)
+            {
+                Deck = GameObject.Find("RealDeckPlayer1");
+                Hand = GameObject.Find("HandPlayer1");
+            }
+            else
+            {
+                Deck = GameObject.Find("RealDeckPlayer2");
+                Hand = GameObject.Find("HandPlayer2");
+            }
+
+            int Maxim = Hand.transform.childCount;
+            int Total = Deck.transform.childCount;
+            int randomnumber = UnityEngine.Random.Range(0, Total - 1);
+            if (Maxim < 10 && Deck.transform.childCount > 0)//check if there is spots for cards in hand and cards in deck
+                Deck.transform.GetChild(randomnumber).SetParent(Hand.transform, false);
+
+        }
+        //7mo
+        if (monsterEfects == Especial.MonsterEffect.EstupidEliminate)
+            for (int i = 0; i < gameObject.transform.parent.childCount; i++)
+                if (gameObject.transform.parent.GetComponent<WarZone>().AsociateZone.transform.GetChild(i).GetComponent<Cards>().BelongsPlayer1)
+                    gameObject.transform.parent.GetComponent<WarZone>().AsociateZone.transform.GetChild(i).SetParent(GameObject.Find("GravePlayer1").transform, false);
+                else
+                    gameObject.transform.parent.GetComponent<WarZone>().AsociateZone.transform.GetChild(i).SetParent(GameObject.Find("GravePlayer2").transform, false);
+
+        //8vo
+        if (monsterEfects == Especial.MonsterEffect.Suicide)
+        {
+            int randomnumber = UnityEngine.Random.Range(1, gameObject.transform.parent.childCount - 1);
+            int Count = gameObject.transform.parent.childCount;
+
+            for (int i = 0; i < Count - 1; i++)
+                if (gameObject.transform.GetChild(i).GetComponent<Cards>().Afected)
+                    gameObject.transform.GetChild(i).GetComponent<Cards>().Attack += Attack / randomnumber;
+
+            if (gameObject.transform.GetComponent<Cards>().BelongsPlayer1)
+                gameObject.transform.SetParent(GameObject.Find("GravePlayer1").transform, false);
+            else
+                gameObject.transform.SetParent(GameObject.Find("GravePlayer2").transform, false);
+
+
+        }
+
+
+
+
     }
 }

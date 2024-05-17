@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-namespace position
+namespace EspecialHabilities
 
 {
-    public class Position : MonoBehaviour
+    public class Especial : MonoBehaviour
     {
         public enum CombatZone
         {
@@ -26,7 +26,13 @@ namespace position
             BoostTypeA,
             BoostTypeB,
             Copy,
-            RandomDestroy
+            RandomDestroy,
+            ReInvoke,
+            Inmune,
+            BossDestroy,
+            Draw,
+            EstupidEliminate,
+            Suicide
         }
 
         public enum LiderEffect

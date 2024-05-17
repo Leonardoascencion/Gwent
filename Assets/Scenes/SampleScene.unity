@@ -254,13 +254,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Id: 0
   Attack: 10
   OriginalAttack: 0
   Afected: 1
   ItIsInHand: 1
   BelongsPositiions: 0000000001000000
   monsterEfects: 0
+  ShowCard: {fileID: 0}
   BelongsPlayer1: 0
 --- !u!61 &25928597
 BoxCollider2D:
@@ -534,13 +534,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Id: 0
   Attack: 0
   OriginalAttack: 0
   Afected: 1
   ItIsInHand: 1
   BelongsPositiions: 03000000
   monsterEfects: 0
+  ShowCard: {fileID: 0}
   BelongsPlayer1: 1
 --- !u!61 &64584564
 BoxCollider2D:
@@ -1127,7 +1127,7 @@ MonoBehaviour:
   Belong: 1
   DamgeAffected: 0
   LastDamgeAffected: 0
-  Change: 0
+  AsociateZone: {fileID: 1970224615}
 --- !u!114 &136309115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1255,7 +1255,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c08687566970d045a7ddccfa94afc38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contador: 0
+  StartRound1: 0
+  StartRound2: 0
+  Contador: 0
 --- !u!1 &141376818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1662,13 +1664,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Id: 0
   Attack: 0
   OriginalAttack: 0
   Afected: 1
   ItIsInHand: 1
   BelongsPositiions: 03000000
   monsterEfects: 0
+  ShowCard: {fileID: 0}
   BelongsPlayer1: 0
 --- !u!61 &248796381
 BoxCollider2D:
@@ -2190,6 +2192,7 @@ RectTransform:
   - {fileID: 1219076909}
   - {fileID: 1656497014}
   - {fileID: 651571411}
+  - {fileID: 1501764243}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3191,13 +3194,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Id: 0
   Attack: 10
   OriginalAttack: 0
   Afected: 0
   ItIsInHand: 1
   BelongsPositiions: 00000000
   monsterEfects: 0
+  ShowCard: {fileID: 0}
   BelongsPlayer1: 1
 --- !u!1 &638076250
 GameObject:
@@ -3329,6 +3332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd3f53c92d2abac40b0a88337e71adb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 651571410}
 --- !u!114 &651571413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3372,7 +3376,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 651571414}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 651571412}
+        m_TargetAssemblyTypeName: Confront, Assembly-CSharp
+        m_MethodName: OnPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &651571414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3463,13 +3479,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Id: 0
-  Attack: 10
-  OriginalAttack: 0
+  Attack: -10
+  OriginalAttack: -10
   Afected: 1
   ItIsInHand: 1
   BelongsPositiions: 05000000
   monsterEfects: 0
+  ShowCard: {fileID: 0}
   BelongsPlayer1: 0
 --- !u!61 &660936359
 BoxCollider2D:
@@ -3606,13 +3622,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Id: 0
   Attack: 0
   OriginalAttack: 0
   Afected: 1
   ItIsInHand: 1
   BelongsPositiions: 03000000
   monsterEfects: 0
+  ShowCard: {fileID: 0}
   BelongsPlayer1: 1
 --- !u!61 &683718454
 BoxCollider2D:
@@ -3749,13 +3765,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Id: 0
   Attack: 0
   OriginalAttack: 0
   Afected: 1
   ItIsInHand: 1
   BelongsPositiions: 03000000
   monsterEfects: 0
+  ShowCard: {fileID: 0}
   BelongsPlayer1: 0
 --- !u!61 &686124386
 BoxCollider2D:
@@ -4358,7 +4374,7 @@ MonoBehaviour:
   Belong: 2
   DamgeAffected: 0
   LastDamgeAffected: 0
-  Change: 0
+  AsociateZone: {fileID: 884737571}
 --- !u!114 &769078066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4442,6 +4458,85 @@ RectTransform:
   m_AnchoredPosition: {x: 26.408, y: -0.0007515}
   m_SizeDelta: {x: 412.94, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &771277197
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 771277198}
+  - component: {fileID: 771277200}
+  - component: {fileID: 771277199}
+  m_Layer: 0
+  m_Name: Name
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &771277198
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771277197}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1656497014}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.0010052, y: 52.639}
+  m_SizeDelta: {x: 108.83, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &771277199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771277197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &771277200
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771277197}
+  m_CullTransparentMesh: 1
 --- !u!1 &805041171
 GameObject:
   m_ObjectHideFlags: 0
@@ -4494,13 +4589,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Id: 0
   Attack: 10
   OriginalAttack: 0
   Afected: 0
   ItIsInHand: 1
   BelongsPositiions: 00000000
   monsterEfects: 0
+  ShowCard: {fileID: 0}
   BelongsPlayer1: 0
 --- !u!61 &805041174
 BoxCollider2D:
@@ -4666,7 +4761,7 @@ MonoBehaviour:
   Belong: 2
   DamgeAffected: 0
   LastDamgeAffected: 0
-  Change: 0
+  AsociateZone: {fileID: 769078064}
 --- !u!114 &884737573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4998,13 +5093,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Id: 0
-  Attack: 10
-  OriginalAttack: 0
+  Attack: -10
+  OriginalAttack: -10
   Afected: 1
   ItIsInHand: 1
   BelongsPositiions: 05000000
   monsterEfects: 0
+  ShowCard: {fileID: 0}
   BelongsPlayer1: 1
 --- !u!61 &937234792
 BoxCollider2D:
@@ -5501,13 +5596,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Id: 0
-  Attack: 10
-  OriginalAttack: 0
+  Attack: -10
+  OriginalAttack: -10
   Afected: 1
   ItIsInHand: 1
   BelongsPositiions: 05000000
   monsterEfects: 0
+  ShowCard: {fileID: 0}
   BelongsPlayer1: 1
 --- !u!61 &1036041582
 BoxCollider2D:
@@ -5803,7 +5898,7 @@ MonoBehaviour:
   Belong: 0
   DamgeAffected: 0
   LastDamgeAffected: 0
-  Change: 0
+  AsociateZone: {fileID: 1647593919}
 --- !u!114 &1060548522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5920,13 +6015,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Id: 0
   Attack: 10
   OriginalAttack: 0
   Afected: 1
   ItIsInHand: 1
   BelongsPositiions: 0000000001000000
   monsterEfects: 0
+  ShowCard: {fileID: 0}
   BelongsPlayer1: 0
 --- !u!61 &1121641758
 BoxCollider2D:
@@ -6089,6 +6184,85 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129098275}
+  m_CullTransparentMesh: 1
+--- !u!1 &1192281561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1192281562}
+  - component: {fileID: 1192281564}
+  - component: {fileID: 1192281563}
+  m_Layer: 0
+  m_Name: Range
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1192281562
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192281561}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1656497014}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -27.206, y: 22.639}
+  m_SizeDelta: {x: 54.413, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1192281563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192281561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &1192281564
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192281561}
   m_CullTransparentMesh: 1
 --- !u!1 &1214058211
 GameObject:
@@ -7027,13 +7201,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Id: 0
   Attack: 10
   OriginalAttack: 0
   Afected: 0
   ItIsInHand: 1
   BelongsPositiions: 00000000
   monsterEfects: 0
+  ShowCard: {fileID: 0}
   BelongsPlayer1: 1
 --- !u!1 &1302519493
 GameObject:
@@ -7546,13 +7720,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Id: 0
   Attack: 10
   OriginalAttack: 0
   Afected: 0
   ItIsInHand: 1
   BelongsPositiions: 00000000
   monsterEfects: 0
+  ShowCard: {fileID: 0}
   BelongsPlayer1: 1
 --- !u!61 &1332895002
 BoxCollider2D:
@@ -7890,7 +8064,7 @@ MonoBehaviour:
   Belong: 4
   DamgeAffected: 0
   LastDamgeAffected: 0
-  Change: 0
+  AsociateZone: {fileID: 0}
 --- !u!114 &1401762093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8025,6 +8199,85 @@ MonoBehaviour:
   Melee: {fileID: 1789357165}
   Range: {fileID: 2035259356}
   Assedium: {fileID: 211016476}
+--- !u!1 &1417137848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1417137849}
+  - component: {fileID: 1417137851}
+  - component: {fileID: 1417137850}
+  m_Layer: 5
+  m_Name: atak
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1417137849
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417137848}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1501764243}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 11.464, y: 23.309}
+  m_SizeDelta: {x: 37.073, y: 23.383}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1417137850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417137848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 232
+--- !u!222 &1417137851
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417137848}
+  m_CullTransparentMesh: 1
 --- !u!1 &1464744754
 GameObject:
   m_ObjectHideFlags: 0
@@ -8077,13 +8330,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Id: 0
   Attack: 10
   OriginalAttack: 0
   Afected: 1
   ItIsInHand: 1
   BelongsPositiions: 04000000
   monsterEfects: 0
+  ShowCard: {fileID: 0}
   BelongsPlayer1: 0
 --- !u!61 &1464744757
 BoxCollider2D:
@@ -8304,13 +8557,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Id: 0
   Attack: 10
   OriginalAttack: 0
   Afected: 0
   ItIsInHand: 1
   BelongsPositiions: 00000000
   monsterEfects: 0
+  ShowCard: {fileID: 0}
   BelongsPlayer1: 0
 --- !u!61 &1491291702
 BoxCollider2D:
@@ -8425,7 +8678,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1501764243}
   - {fileID: 1839182188}
   - {fileID: 64584562}
   - {fileID: 683718452}
@@ -8527,7 +8779,7 @@ GameObject:
   - component: {fileID: 1501764246}
   - component: {fileID: 1501764247}
   m_Layer: 5
-  m_Name: Francisco
+  m_Name: ExampleCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8544,13 +8796,14 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1495441825}
+  m_Children:
+  - {fileID: 1417137849}
+  m_Father: {fileID: 449762086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 60, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 979, y: -75}
+  m_SizeDelta: {x: 60, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1501764244
 MonoBehaviour:
@@ -8647,14 +8900,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c2684209249b6f4c985b4b27a73f1fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Id: 0
-  Attack: 10
+  Name: Francisco
+  Attack: 15
   OriginalAttack: 0
   Afected: 1
   ItIsInHand: 1
   BelongsPositiions: 0000000001000000
-  monsterEfects: 0
+  monsterEfects: 1
+  ShowCard: {fileID: 0}
   BelongsPlayer1: 1
 --- !u!1 &1534470707
 GameObject:
@@ -9168,7 +9421,7 @@ MonoBehaviour:
   Belong: 0
   DamgeAffected: 0
   LastDamgeAffected: 0
-  Change: 0
+  AsociateZone: {fileID: 1060548518}
 --- !u!114 &1647593921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9413,6 +9666,7 @@ GameObject:
   - component: {fileID: 1656497014}
   - component: {fileID: 1656497016}
   - component: {fileID: 1656497015}
+  - component: {fileID: 1656497017}
   m_Layer: 0
   m_Name: ShowCard
   m_TagString: Untagged
@@ -9431,7 +9685,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 2115.8972}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 771277198}
+  - {fileID: 1192281562}
+  - {fileID: 1720016260}
+  - {fileID: 1845599319}
   m_Father: {fileID: 449762086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -9459,7 +9717,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1e03a8bd79ac7eddba413599a09cfd82, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9f7f0093afaa18d44af92e0022c24035, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9477,6 +9735,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656497013}
   m_CullTransparentMesh: 1
+--- !u!114 &1656497017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656497013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6b73907d5528ce4cb94b0597016dace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: {fileID: 771277199}
+  Attack: {fileID: 1720016261}
+  Effect: {fileID: 1845599320}
+  Range: {fileID: 1192281563}
 --- !u!1 &1661326095
 GameObject:
   m_ObjectHideFlags: 0
@@ -9529,13 +9803,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Id: 0
   Attack: 10
   OriginalAttack: 0
   Afected: 0
   ItIsInHand: 1
   BelongsPositiions: 00000000
   monsterEfects: 0
+  ShowCard: {fileID: 0}
   BelongsPlayer1: 0
 --- !u!61 &1661326098
 BoxCollider2D:
@@ -10016,6 +10290,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1696402553}
   m_CullTransparentMesh: 1
+--- !u!1 &1720016259
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1720016260}
+  - component: {fileID: 1720016262}
+  - component: {fileID: 1720016261}
+  m_Layer: 0
+  m_Name: Attak
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1720016260
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720016259}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1656497014}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 27.209, y: 22.63899}
+  m_SizeDelta: {x: 54.413, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1720016261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720016259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &1720016262
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720016259}
+  m_CullTransparentMesh: 1
 --- !u!1 &1753936761
 GameObject:
   m_ObjectHideFlags: 0
@@ -10371,13 +10724,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Id: 0
-  Attack: 10
-  OriginalAttack: 0
+  Attack: -10
+  OriginalAttack: -10
   Afected: 1
   ItIsInHand: 1
   BelongsPositiions: 05000000
   monsterEfects: 0
+  ShowCard: {fileID: 0}
   BelongsPlayer1: 0
 --- !u!61 &1790260463
 BoxCollider2D:
@@ -10744,13 +11097,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Id: 0
   Attack: 10
   OriginalAttack: 0
   Afected: 1
   ItIsInHand: 1
   BelongsPositiions: 0000000001000000
   monsterEfects: 0
+  ShowCard: {fileID: 0}
   BelongsPlayer1: 1
 --- !u!61 &1839182190
 BoxCollider2D:
@@ -10834,6 +11187,85 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1839182187}
+  m_CullTransparentMesh: 1
+--- !u!1 &1845599318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1845599319}
+  - component: {fileID: 1845599321}
+  - component: {fileID: 1845599320}
+  m_Layer: 0
+  m_Name: Effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1845599319
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845599318}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1656497014}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.00024033, y: -46.729}
+  m_SizeDelta: {x: 108.83, y: 41.819}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1845599320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845599318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &1845599321
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845599318}
   m_CullTransparentMesh: 1
 --- !u!1 &1871925658
 GameObject:
@@ -11115,7 +11547,7 @@ MonoBehaviour:
   Belong: 4
   DamgeAffected: 0
   LastDamgeAffected: 0
-  Change: 0
+  AsociateZone: {fileID: 0}
 --- !u!114 &1949446522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11226,7 +11658,7 @@ MonoBehaviour:
   Belong: 1
   DamgeAffected: 0
   LastDamgeAffected: 0
-  Change: 0
+  AsociateZone: {fileID: 136309113}
 --- !u!114 &1970224617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11874,13 +12306,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  Id: 0
   Attack: 10
   OriginalAttack: 0
   Afected: 1
   ItIsInHand: 1
   BelongsPositiions: 04000000
   monsterEfects: 0
+  ShowCard: {fileID: 0}
   BelongsPlayer1: 1
 --- !u!61 &2088155643
 BoxCollider2D:

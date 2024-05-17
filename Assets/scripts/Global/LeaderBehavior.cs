@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using position;
+using EspecialHabilities;
 using System.IO;
 
 
 public class Leader : MonoBehaviour
 {
     public string Name;
-    public Position.LiderEffect LiderEfects;
+    public Especial.LiderEffect LiderEfects;
     public bool BelongsPlayer1;
-    public bool EfectUsed;
+    public bool EfectUsed = false;
 
     //dont touch
     private Sprite DefaultSprite;
@@ -39,7 +39,7 @@ public class Leader : MonoBehaviour
         //allows to use the leader efect one time for round and only uses the owner of the card
         if (!EfectUsed && GameManager.Instance.TurnPlayer1 == BelongsPlayer1 && GameManager.Instance.TurnPlayer2 != BelongsPlayer1)
         {
-            if (Scope.FirstExampleCard != null && LiderEfects == Position.LiderEffect.Inmune)
+            if (Scope.FirstExampleCard != null && LiderEfects == Especial.LiderEffect.Inmune)
             {
                 Scope.FirstExampleCard.GetComponent<Cards>().Afected = false;
                 EfectUsed = true;

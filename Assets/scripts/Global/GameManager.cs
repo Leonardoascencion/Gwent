@@ -16,7 +16,9 @@ public class GameManager : MonoBehaviour
     public bool EndRoundPlayer1 { get; set; } = false;
     public bool EndRoundPlayer2 { get; set; } = false;
     public bool ENDGAME { get; private set; } = false;
-    public int contador;
+    public bool StartRound1 = false;
+    public bool StartRound2 = false;
+    public int Contador;
     void Awake()
     {
         Instance = this;
@@ -71,7 +73,7 @@ public class GameManager : MonoBehaviour
                     ScorePlayer1 += 1;
                     ScorePlayer2 += 1;
                     TurnPlayer2 = true;
-                    if (GameObject.Find("Leader2").GetComponent<Leader>().LiderEfects == position.Position.LiderEffect.UnfairDraw && GameObject.Find("Leader1").GetComponent<Leader>().LiderEfects != position.Position.LiderEffect.UnfairDraw)
+                    if (GameObject.Find("Leader2").GetComponent<Leader>().LiderEfects == EspecialHabilities.Especial.LiderEffect.UnfairDraw && GameObject.Find("Leader1").GetComponent<Leader>().LiderEfects != EspecialHabilities.Especial.LiderEffect.UnfairDraw)
                     {
                         ScorePlayer1 -= 1;
                         GameObject.Find("Text error").GetComponent<Text>().text = " Empate(guiño al 2)";
@@ -84,6 +86,8 @@ public class GameManager : MonoBehaviour
                 }
                 EndRoundPlayer1 = false;
                 EndRoundPlayer2 = false;
+                StartRound1 = true;
+                StartRound2 = true;
                 DropCementery(GameObject.Find("Climate"));
                 DropCementery(GameObject.Find("MeleeField1"));
                 DropCementery(GameObject.Find("RangeField1"));

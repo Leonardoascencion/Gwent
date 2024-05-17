@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using position;
+using EspecialHabilities;
 
 public class SummonButton : MonoBehaviour
 {
     public GameObject Button;
     public GameObject Zone;
     public GameObject SecondZoneAsociate;
-    public Position.CombatZone ZoneBelong;
+    public Especial.CombatZone ZoneBelong;
     public bool BelongsPlayer1;
 
     void Start()
@@ -34,22 +34,20 @@ public class SummonButton : MonoBehaviour
             {
                 //Case of Normal Monster
                 if (Scope.FirstExampleCard.GetComponent<Cards>().BelongsPositiions[i] == ZoneBelong)
-                {
-                    SecondZoneAsociate.GetComponent<WarZone>().Change = true;
-                    GameManager.Instance.ChangeTurn();
-                    Scope.FirstExampleCard.transform.SetParent(Zone.transform, false);
-                    Scope.FirstExampleCard.ItIsInHand = false;
-                    Scope.FirstExampleCard.Efect();
-                    break;
-                }
+                    if (Zone.transform.childCount < 5)
+                    {
+                        GameManager.Instance.ChangeTurn();
+                        Scope.FirstExampleCard.transform.SetParent(Zone.transform, false);
+                        Scope.FirstExampleCard.ItIsInHand = false;
+                        Scope.FirstExampleCard.Efect();
+                        break;
+                    }
 
                 //Case of Climmate
-                if (Scope.FirstExampleCard.GetComponent<Cards>().BelongsPositiions[i] == Position.CombatZone.Debuf && Scope.ClimateZone.transform.childCount < 3)
+                if (Scope.FirstExampleCard.GetComponent<Cards>().BelongsPositiions[i] == Especial.CombatZone.Debuf && Scope.ClimateZone.transform.childCount < 3)
                 {
 
                     Scope.FirstExampleCard.transform.SetParent(Scope.ClimateZone.transform, false);
-
-                    //this affect the two zones related in the inspector
                     /*   for (int j = 0; j < Total; j++)
                       {
                           if (Zone.transform.GetChild(i).GetComponent<Cards>().Afected)
@@ -65,17 +63,16 @@ public class SummonButton : MonoBehaviour
 
                     Zone.GetComponent<WarZone>().DamgeAffected += Deugrade;
                     SecondZoneAsociate.GetComponent<WarZone>().DamgeAffected += Deugrade;
-                    Zone.GetComponent<WarZone>().Change = true;
                     GameManager.Instance.ChangeTurn();
                     break;
                 }
                 // case of target
-                if (Scope.FirstExampleCard.GetComponent<Cards>().BelongsPositiions[i] == Position.CombatZone.Target)
+                if (Scope.FirstExampleCard.GetComponent<Cards>().BelongsPositiions[i] == Especial.CombatZone.Target)
                 {
-                    List<GameObject> auxList = new List<GameObject>();
+                    List<GameObject> auxList = new();
                     for (int j = 0; j < Total; j++)
                         if (Zone.transform.GetChild(j).GetComponent<Cards>().Afected)
-                            if (Zone.transform.GetChild(j).GetComponent<Cards>().BelongsPositiions[0] != Position.CombatZone.Target)
+                            if (Zone.transform.GetChild(j).GetComponent<Cards>().BelongsPositiions[0] != Especial.CombatZone.Target)
                                 auxList.Add(Zone.transform.GetChild(j).gameObject);
                     if (auxList.Count != 0)
                     {
@@ -84,13 +81,13 @@ public class SummonButton : MonoBehaviour
                             Zone.transform.GetChild(randomnumber).transform.SetParent(GameObject.Find("HandPlayer1").transform, false);
                         else
                             Zone.transform.GetChild(randomnumber).transform.SetParent(GameObject.Find("HandPlayer2").transform, false);
-                        Scope.FirstExampleCard.transform.SetParent(Zone.transform, false);
-                        GameManager.Instance.ChangeTurn();
                     }
+                    Scope.FirstExampleCard.transform.SetParent(Zone.transform, false);
+                    GameManager.Instance.ChangeTurn();
                 }
 
                 //Case of Clear
-                if (Scope.FirstExampleCard.BelongsPositiions[i] == position.Position.CombatZone.Clear && Scope.ClimateZone.transform.childCount > 0)
+                if (Scope.FirstExampleCard.BelongsPositiions[i] == EspecialHabilities.Especial.CombatZone.Clear && Scope.ClimateZone.transform.childCount > 0)
                 {
                     Scope.FirstExampleCard.transform.SetParent(Scope.ClimateZone.transform, false);
                     for (int j = Scope.ClimateZone.transform.childCount - 1; j >= 0; j--)

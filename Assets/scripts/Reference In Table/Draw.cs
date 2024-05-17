@@ -50,6 +50,18 @@ public class Draw : MonoBehaviour
             if (Hand.transform.GetChild(i).GetComponent<Cards>())
                 Hand.transform.GetChild(i).GetComponent<Cards>().Attack = Hand.transform.GetChild(i).GetComponent<Cards>().OriginalAttack;
 
+        if (BelongsPlayer1)
+        {
+            if (GameManager.Instance.StartRound1)
+                for (int i = 0; i < 2; i++)
+                    DrawFunction();
+            GameManager.Instance.StartRound1 = false;
+        }
+        else
+        if (GameManager.Instance.StartRound2)
+            for (int i = 0; i < 2; i++)
+                DrawFunction();
+        GameManager.Instance.StartRound2 = false;
     }
 
     public void DrawFunction()
@@ -59,7 +71,7 @@ public class Draw : MonoBehaviour
             int Maxim = Hand.transform.childCount;
             int Total = RealDeck.transform.childCount;
             int randomnumber = UnityEngine.Random.Range(0, Total - 1);
-            if (Maxim < 10 && RealDeck.transform.childCount > 0)//check if there is spots for cards in hand and cards in deck
+            if (RealDeck.transform.childCount > 0)//check if there is spots for cards in hand and cards in deck
                 RealDeck.transform.GetChild(randomnumber).SetParent(Hand.transform, false);
             GameManager.Instance.StartTurn = false;
             Debug.Log("Robo");

@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class Confront : MonoBehaviour
 {
-    public Button button;
+    public GameObject button;
 
 
 
-    void OnPress()
+    public void OnPress()
     {
         if (!(GameManager.Instance.EndRoundPlayer1 || GameManager.Instance.EndRoundPlayer2))
         {
@@ -19,16 +19,20 @@ public class Confront : MonoBehaviour
             GameManager.Instance.ChangeTurn();
         }
     }
+
     public void Conffrontt(GameObject Zona1, GameObject Zona2)
     {
-        int totalzona1 = +Zona1.GetComponentInChildren<Cards>().Attack;
-        int totalzona2 = +Zona2.GetComponentInChildren<Cards>().Attack;
-        int randomnumber1 = UnityEngine.Random.Range(0, Zona1.transform.childCount - 1);
-        int randomnumber2 = UnityEngine.Random.Range(0, Zona2.transform.childCount - 1);
+        if (Zona1.transform.childCount != 0 && Zona2.transform.childCount != 0)
+        {
+            int totalzona1 = +Zona1.GetComponentInChildren<Cards>().Attack;
+            int totalzona2 = +Zona2.GetComponentInChildren<Cards>().Attack;
+            int randomnumber1 = UnityEngine.Random.Range(0, Zona1.transform.childCount - 1);
+            int randomnumber2 = UnityEngine.Random.Range(0, Zona2.transform.childCount - 1);
 
-        if (totalzona1 > totalzona2)
-            Zona2.transform.GetChild(randomnumber2).transform.SetParent(GameObject.Find("GravePlayer2").transform, false);
-        else
-            Zona1.transform.GetChild(randomnumber1).transform.SetParent(GameObject.Find("GravePlayer1").transform, false);
+            if (totalzona1 > totalzona2)
+                Zona2.transform.GetChild(randomnumber2).transform.SetParent(GameObject.Find("GravePlayer2").transform, false);
+            if (totalzona1 < totalzona2)
+                Zona1.transform.GetChild(randomnumber1).transform.SetParent(GameObject.Find("GravePlayer1").transform, false);
+        }
     }
 }

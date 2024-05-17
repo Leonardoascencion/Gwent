@@ -3,24 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using position;
+using EspecialHabilities;
 // script asociate to the Melee, Range, Assedium  zones of each player 
 public class WarZone : MonoBehaviour
 {
-    public Position.CombatZone Belong;
+    public Especial.CombatZone Belong;
     public int DamgeAffected = 0;
     public int LastDamgeAffected = 0;
-    public bool Change;
+    public GameObject AsociateZone;
 
-    private void Update()
+
+/*     private void Update()
     {
-        if (Change)
+        if (DamgeAffected != 0)
         {
             for (int i = 0; i < gameObject.transform.childCount; i++)
                 if (gameObject.transform.GetChild(i).GetComponent<Cards>().Afected)
                     gameObject.transform.GetChild(i).GetComponent<Cards>().Attack += LastDamgeAffected;
-            LastDamgeAffected = DamgeAffected;
-            Change = false;
+            LastDamgeAffected += DamgeAffected;
+
         }
 
         for (int i = 0; i < gameObject.transform.childCount; i++)
@@ -29,7 +30,7 @@ public class WarZone : MonoBehaviour
         }
 
         DamgeAffected = 0;
-    }
+    } */
 
 }
 
