@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public bool ENDGAME { get; private set; } = false;
     public bool StartRound1 = false;
     public bool StartRound2 = false;
-    public int Contador;
+    public int Contador = 0;
     void Awake()
     {
         Instance = this;
@@ -27,6 +27,12 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Contador == 5)
+            Contador = 0;
+
+        if(EndRoundPlayer1 || EndRoundPlayer2)
+        StartTurn= true;
+
         if (!ENDGAME)
         {
             if (EndRoundPlayer1 && !EndRoundPlayer2)
@@ -73,6 +79,7 @@ public class GameManager : MonoBehaviour
                     ScorePlayer1 += 1;
                     ScorePlayer2 += 1;
                     TurnPlayer2 = true;
+
                     if (GameObject.Find("Leader2").GetComponent<Leader>().LiderEfects == EspecialHabilities.Especial.LiderEffect.UnfairDraw && GameObject.Find("Leader1").GetComponent<Leader>().LiderEfects != EspecialHabilities.Especial.LiderEffect.UnfairDraw)
                     {
                         ScorePlayer1 -= 1;
@@ -104,14 +111,12 @@ public class GameManager : MonoBehaviour
         {
             GameObject.Find("Text error").GetComponent<Text>().text = "Gano Player1";
             ENDGAME = true;
-            Debug.Log("Gano1");
         }
 
         if (ScorePlayer2 == 2 && ScorePlayer1 < 2)
         {
             GameObject.Find("Text error").GetComponent<Text>().text = "Gano Player2";
             ENDGAME = true;
-            Debug.Log("Gano2");
         }
 
         if (ScorePlayer1 == 2 && ScorePlayer2 == 2)
@@ -147,6 +152,7 @@ public class GameManager : MonoBehaviour
         Instance.TurnPlayer1 = !Instance.TurnPlayer1;
         Instance.TurnPlayer2 = !Instance.TurnPlayer2;
         StartTurn = true;
+        Contador++;
     }
 
 

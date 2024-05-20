@@ -27,10 +27,9 @@ public class ShowBehavior : MonoBehaviour
             Name.text = Scope.FirstExampleCard.Name;
             Attack.text = "" + Scope.FirstExampleCard.Attack;
             Effect.text = Scope.FirstExampleCard.monsterEfects.ToString();
-            /* for (int i = 0; i < 3; i++)
-            if(Scope.FirstExampleCard.BelongsPositiions[i])
+             for (int i = 0; i <Scope.FirstExampleCard.BelongsPositiions.Count; i++)
                 Range.text = "" + Scope.FirstExampleCard.BelongsPositiions[i].ToString();
- */
+ 
         }
     }
 }

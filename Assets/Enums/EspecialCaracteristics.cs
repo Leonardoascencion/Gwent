@@ -25,8 +25,6 @@ namespace EspecialHabilities
             None,
             BoostTypeA,
             BoostTypeB,
-            Copy,
-            RandomDestroy,
             ReInvoke,
             Inmune,
             BossDestroy,
